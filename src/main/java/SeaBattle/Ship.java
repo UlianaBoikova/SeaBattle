@@ -41,7 +41,7 @@ public class Ship extends Rectangle {
         setStroke(Color.BLACK);
     }
 
-    // Обработка переворота корабля
+    // Handling a ship capsize
     public static void mouseClickedRight(Ship ship, int[][] tableShipsPosition, int[][] tableAroundShip) {
         if (ship.size != 1) {
             if (ship.getTranslateX() != 0 || ship.getTranslateY() != 0) {
@@ -67,7 +67,7 @@ public class Ship extends Rectangle {
         }
     }
 
-    // Очистка местонахождения кораблей
+    // Clearing the location of ships
     public static void mouseDragged(Ship ship, int[][] tableShipsPosition, int[][] tableAroundShip) {
         for (int i = 0; i <= ship.listX.size() - 1; i++) {
             for (int j = 0; j <= ship.listY.size() - 1; j++) {
@@ -84,7 +84,7 @@ public class Ship extends Rectangle {
     }
 
     public static void mouseReleased(Ship ship, int[][] tableShipsPosition, int[][] tableAroundShip) {
-        // Возврат кораблей на начальную позицию при выходе его за границу
+        // Return of ships to their initial position when they leave the border
         if (ship.position &&
                 (ship.getX() + ship.getTranslateX() < SeaBattle.SIZE ||
                         ship.getX() + ship.getTranslateX() + SeaBattle.SIZE > SeaBattle.SIZE + SeaBattle.SIZE * 10 ||
@@ -144,7 +144,7 @@ public class Ship extends Rectangle {
         }
     }
 
-    // Возврат при надвижении одного корабля на другой и запись их позиций при установке
+    // Returning when one ship moves towards another and recording their positions when installed
     private static void recordPositionsOfShips(Ship ship, int[][] table, int[][] tableAroundShip, int firstX1,
                                                int secondX1, int firstY1, int secondY1, int firstX, int secondX,
                                                int firstY, int secondY) {

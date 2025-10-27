@@ -57,7 +57,7 @@ public class SeaBattle extends Application {
         primaryStage.show();
     }
 
-    // Объявление кораблей и добавление их на экран
+    // Declaring ships and adding them to the screen
     void declareShips(int[][] tableShipsPosition, int[][] aroundShip) {
         error.setX(450);
         error.setY(300);
@@ -93,7 +93,7 @@ public class SeaBattle extends Application {
         }
     }
 
-    // Обработка нажатия кнопки начала игры, добавление объектов для расстановки кораблей первого игрока на экран
+    // Handling the start button press, adding objects for placing the first player's ships on the screen
     private void pressStartButton(Button beginButton) {
         beginButton.setOnAction(event -> {
             declareShips(tableShipsPosition1, aroundShip1);
@@ -133,7 +133,7 @@ public class SeaBattle extends Application {
         });
     }
 
-    //Добавление объектов для расстановки кораблей второго игрока на экран
+    // Adding objects for placing the second player's ships on the screen
     void pressShipPlacementButton() {
         declareShips(tableShipsPosition2, aroundShip2);
         Text participant2 = new Text("Участник2 установите корабли");
@@ -184,7 +184,7 @@ public class SeaBattle extends Application {
         });
     }
 
-    // Обработка стрельбы по полю участника2
+    // Field shooting processing for participant 2
     private void shootsParticipant1(){
         scene.setOnMouseClicked(e -> {
             for (int i = 0; i <= 9; i++) {
@@ -209,7 +209,7 @@ public class SeaBattle extends Application {
                             e.getSceneY() >= SIZE * (j + 1) && e.getSceneY() < SIZE * (j + 2) &&
                             tableShipsPosition2[i][j] == 0 && tableOfHits2[i + 1][j + 1] != 1 && endGame) {
                         tableOfHits2[i + 1][j + 1] = 1;
-                        drawRectangleBlue(SIZE * 12 + SIZE * (i + 1), SIZE * (j + 1));
+                        drawBlueRectangle(SIZE * 12 + SIZE * (i + 1), SIZE * (j + 1));
                         addImage("/ArrowLeft.jpg", SIZE * 11 + (int) (SIZE * 0.2), SIZE * 6, (int) (SIZE * 1.6), (int) (SIZE * 1.6));
                         shootsParticipant2();
                     }
@@ -218,7 +218,7 @@ public class SeaBattle extends Application {
         });
     }
 
-    // Обработка стрельбы по полю участника1
+    // Field shooting processing for participant 1
     private void shootsParticipant2(){
         scene.setOnMouseClicked(e -> {
             for (int i = 0; i <= 9; i++) {
@@ -243,7 +243,7 @@ public class SeaBattle extends Application {
                             e.getSceneY() >= SIZE * (j + 1) && e.getSceneY() < SIZE * (j + 2) &&
                             tableShipsPosition1[i][j] == 0 && tableOfHits1[i + 1][j + 1] != 1 && endGame) {
                         tableOfHits1[i + 1][j + 1] = 1;
-                        drawRectangleBlue(SIZE * (i + 1), SIZE * (j + 1));
+                        drawBlueRectangle(SIZE * (i + 1), SIZE * (j + 1));
                         addImage("/ArrowRight.jpg", SIZE * 11 + (int) (SIZE * 0.2), SIZE * 6, (int) (SIZE * 1.6), (int) (SIZE * 1.6));
                         shootsParticipant1();
                     }
@@ -252,7 +252,7 @@ public class SeaBattle extends Application {
         });
     }
 
-    // Проверка в корабль попали или корабль убили
+    // Check whether the ship was hit or killed.
     void shipKilled(int i, int j, int[][] tableShipsPosition, int segment, int participant) {
         boolean borderX0 = i == 0;
         boolean borderY0 = j == 0;
@@ -332,7 +332,7 @@ public class SeaBattle extends Application {
         }
     }
 
-    // Отрисовка картинки
+    // Drawing a picture
     void addImage(String name, int x, int y, int height, int width) {
         try {
             Image image = new Image(new FileInputStream(new File("").getAbsolutePath() + name));
@@ -364,7 +364,7 @@ public class SeaBattle extends Application {
         }
     }
 
-    // Отрисовка убитого корабля
+    // Drawing of a destroyed ship
     private void drawRectangleRed(int x, int y, boolean horizontallyVertically, int size, boolean borderX0,
                                   boolean borderY0, boolean borderX9, boolean borderY9, int participant) {
         Rectangle smallRectangleRed;
@@ -375,92 +375,92 @@ public class SeaBattle extends Application {
             if (!borderX0 && borderY0 && !borderX9 && !borderY9) {
                 int y1 = y;
                 for (int i = 1; i <= size + 1; i ++) {
-                    drawRectangleBlue(x - SIZE, y1);
+                    drawBlueRectangle(x - SIZE, y1);
                     y1 += SIZE;
                 }
                 y1 = y;
                 for (int i = 1; i <= size + 1; i ++) {
-                    drawRectangleBlue(x + SIZE, y1);
+                    drawBlueRectangle(x + SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y + SIZE * size);
+                drawBlueRectangle(x, y + SIZE * size);
             }
             if (borderX0 && !borderY0 && !borderX9 && !borderY9) {
                 int y1 = y - SIZE;
                 for (int i = 0; i <= size + 1; i++) {
-                    drawRectangleBlue(x + SIZE, y1);
+                    drawBlueRectangle(x + SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y + SIZE * size);
-                drawRectangleBlue(x, y - SIZE);
+                drawBlueRectangle(x, y + SIZE * size);
+                drawBlueRectangle(x, y - SIZE);
             }
             if (!borderX0 && !borderY0 && !borderX9 && borderY9) {
                 int y1 = y - SIZE;
                 for (int i = 1; i <= size + 1; i ++) {
-                    drawRectangleBlue(x - SIZE, y1);
+                    drawBlueRectangle(x - SIZE, y1);
                     y1 += SIZE;
                 }
                 y1 = y - SIZE;
                 for (int i = 1; i <= size + 1; i ++) {
-                    drawRectangleBlue(x + SIZE, y1);
+                    drawBlueRectangle(x + SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y - SIZE);
+                drawBlueRectangle(x, y - SIZE);
             }
             if (!borderX0 && !borderY0 && borderX9 && !borderY9) {
                 int y1 = y - SIZE;
                 for (int i = 0; i <= size + 1; i++) {
-                    drawRectangleBlue(x - SIZE, y1);
+                    drawBlueRectangle(x - SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y + SIZE * size);
-                drawRectangleBlue(x, y - SIZE);
+                drawBlueRectangle(x, y + SIZE * size);
+                drawBlueRectangle(x, y - SIZE);
             }
             if (borderX0 && borderY0 && !borderX9 && !borderY9) {
                 int y1 = y;
                 for (int i = 1; i <= size + 1; i++) {
-                    drawRectangleBlue(x + SIZE, y1);
+                    drawBlueRectangle(x + SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y + SIZE * size);
+                drawBlueRectangle(x, y + SIZE * size);
             }
             if (borderX0 && !borderY0 && !borderX9 && borderY9) {
                 int y1 = y - SIZE;
                 for (int i = 0; i <= size; i++) {
-                    drawRectangleBlue(x + SIZE, y1);
+                    drawBlueRectangle(x + SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y - SIZE);
+                drawBlueRectangle(x, y - SIZE);
             }
             if (!borderX0 && borderY0 && borderX9 && !borderY9) {
                 int y1 = y;
                 for (int i = 1; i <= size + 1; i++) {
-                    drawRectangleBlue(x - SIZE, y1);
+                    drawBlueRectangle(x - SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y + SIZE * size);
+                drawBlueRectangle(x, y + SIZE * size);
             }
             if (!borderX0 && !borderY0 && borderX9 && borderY9) {
                 int y1 = y - SIZE;
                 for (int i = 0; i <= size; i++) {
-                    drawRectangleBlue(x - SIZE, y1);
+                    drawBlueRectangle(x - SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y - SIZE);
+                drawBlueRectangle(x, y - SIZE);
             }
             if (!borderX0 && !borderY0 && !borderX9 && !borderY9) {
                 int y1 = y - SIZE;
                 for (int i = 0; i <= size + 1; i ++) {
-                    drawRectangleBlue(x - SIZE, y1);
+                    drawBlueRectangle(x - SIZE, y1);
                     y1 += SIZE;
                 }
                 y1 = y - SIZE;
                 for (int i = 0; i <= size + 1; i ++) {
-                    drawRectangleBlue(x + SIZE, y1);
+                    drawBlueRectangle(x + SIZE, y1);
                     y1 += SIZE;
                 }
-                drawRectangleBlue(x, y - SIZE);
-                drawRectangleBlue(x, y + SIZE * size);
+                drawBlueRectangle(x, y - SIZE);
+                drawBlueRectangle(x, y + SIZE * size);
             }
 
 
@@ -472,93 +472,93 @@ public class SeaBattle extends Application {
             if (!borderX0 && !borderY0 && !borderX9 && !borderY9) {
                 int x1 = x - SIZE;
                 for (int i = 0; i <= size + 1; i ++) {
-                    drawRectangleBlue(x1, y + SIZE);
+                    drawBlueRectangle(x1, y + SIZE);
                     x1 += SIZE;
                 }
                 x1 = x - SIZE;
                 for (int i = 0; i <= size + 1; i ++) {
-                    drawRectangleBlue(x1, y - SIZE);
+                    drawBlueRectangle(x1, y - SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x + SIZE * size, y);
-                drawRectangleBlue(x - SIZE, y);
+                drawBlueRectangle(x + SIZE * size, y);
+                drawBlueRectangle(x - SIZE, y);
             }
             if (borderX0 && !borderY0 && !borderX9 && !borderY9) {
                 int x1 = x;
                 for (int i = 1; i <= size + 1; i ++) {
-                    drawRectangleBlue(x1, y + SIZE);
+                    drawBlueRectangle(x1, y + SIZE);
                     x1 += SIZE;
                 }
                 x1 = x;
                 for (int i = 1; i <= size + 1; i ++) {
-                    drawRectangleBlue(x1, y - SIZE);
+                    drawBlueRectangle(x1, y - SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x + SIZE * size, y);
+                drawBlueRectangle(x + SIZE * size, y);
             }
             if (!borderX0 && !borderY0 && borderX9 && !borderY9) {
                 int x1 = x - SIZE;
                 for (int i = 0; i <= size; i ++) {
-                    drawRectangleBlue(x1, y + SIZE);
+                    drawBlueRectangle(x1, y + SIZE);
                     x1 += SIZE;
                 }
                 x1 = x - SIZE;
                 for (int i = 0; i <= size; i ++) {
-                    drawRectangleBlue(x1, y - SIZE);
+                    drawBlueRectangle(x1, y - SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x - SIZE, y);
+                drawBlueRectangle(x - SIZE, y);
             }
             if (!borderX0 && borderY0 && !borderX9 && !borderY9) {
                 int x1 = x - SIZE;
                 for (int i = 0; i <= size + 1; i ++) {
-                    drawRectangleBlue(x1, y + SIZE);
+                    drawBlueRectangle(x1, y + SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x + SIZE * size, y);
-                drawRectangleBlue(x - SIZE, y);
+                drawBlueRectangle(x + SIZE * size, y);
+                drawBlueRectangle(x - SIZE, y);
             }
             if (!borderX0 && !borderY0 && !borderX9 && borderY9) {
                 int x1 = x - SIZE;
                 for (int i = 0; i <= size + 1; i ++) {
-                    drawRectangleBlue(x1, y - SIZE);
+                    drawBlueRectangle(x1, y - SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x + SIZE * size, y);
-                drawRectangleBlue(x - SIZE, y);
+                drawBlueRectangle(x + SIZE * size, y);
+                drawBlueRectangle(x - SIZE, y);
             }
             if (borderX0 && borderY0 && !borderX9 && !borderY9) {
                 int x1 = x;
                 for (int i = 1; i <= size + 1; i ++) {
-                    drawRectangleBlue(x1, y + SIZE);
+                    drawBlueRectangle(x1, y + SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x + SIZE * size, y);
+                drawBlueRectangle(x + SIZE * size, y);
             }
             if (borderX0 && !borderY0 && !borderX9 && borderY9) {
                 int x1 = x;
                 for (int i = 1; i <= size + 1; i ++) {
-                    drawRectangleBlue(x1, y - SIZE);
+                    drawBlueRectangle(x1, y - SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x + SIZE * size, y);
+                drawBlueRectangle(x + SIZE * size, y);
             }
             if (!borderX0 && borderY0 && borderX9 && !borderY9) {
                 int x1 = x - SIZE;
                 for (int i = 0; i <= size; i ++) {
-                    drawRectangleBlue(x1, y + SIZE);
+                    drawBlueRectangle(x1, y + SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x - SIZE, y);
+                drawBlueRectangle(x - SIZE, y);
             }
 
             if (!borderX0 && !borderY0 && borderX9 && borderY9) {
                 int x1 = x - SIZE;
                 for (int i = 0; i <= size; i ++) {
-                    drawRectangleBlue(x1, y - SIZE);
+                    drawBlueRectangle(x1, y - SIZE);
                     x1 += SIZE;
                 }
-                drawRectangleBlue(x - SIZE, y);
+                drawBlueRectangle(x - SIZE, y);
             }
         }
         smallRectangleRed.setFill(Color.RED);
@@ -568,8 +568,8 @@ public class SeaBattle extends Application {
         group.getChildren().addAll(smallRectangleRed);
     }
 
-    // Отрисовка промаха
-    private void drawRectangleBlue(int x, int y) {
+    // Drawing a miss
+    private void drawBlueRectangle(int x, int y) {
         Rectangle smallRectangleBlue = new Rectangle(SIZE,SIZE);
         smallRectangleBlue.setFill(Color.LIGHTSKYBLUE);
         smallRectangleBlue.setStroke(Color.BLACK);
@@ -578,7 +578,7 @@ public class SeaBattle extends Application {
         group.getChildren().addAll(smallRectangleBlue);
     }
 
-    // Отрисовка попадания в корабль
+    // Rendering of a hit on a ship
     private void drawCross(int x, int y) {
         Line line1 = new Line(x, y, x + SIZE, y + SIZE);
         line1.setStroke(Color.RED);
@@ -587,7 +587,7 @@ public class SeaBattle extends Application {
         group.getChildren().addAll(line1, line2);
     }
 
-    // Установление кораблей
+    // Establishment of ships
     private void installation(Ship ship, int[][] tableShipsPosition, int[][] tableAroundShip) {
         // Переворот корабля
         ship.setOnMouseClicked(mouseEvent -> {
@@ -595,7 +595,7 @@ public class SeaBattle extends Application {
                 Ship.mouseClickedRight(ship, tableShipsPosition, tableAroundShip);
             }
         });
-        // Перемещение корабля
+        // Moving the ship
         ship.setOnMousePressed(e -> {
             if (e.getButton().equals(MouseButton.PRIMARY)) {
                 oldX = ship.getTranslateX() - e.getSceneX();
