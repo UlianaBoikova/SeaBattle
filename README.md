@@ -1,53 +1,26 @@
-# Шаблон репозитория для курсов по программированию
+•	Sea Battle
 
-## Инструкция
-1. Сделайте [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) репозитория
-2. Настройте систему сборки [maven](https://maven.apache.org/) или [gradle](https://gradle.org/)
-    * [Работа с maven в IDEA](https://www.jetbrains.com/help/idea/maven-support.html)
-    * [Работа с gradle в IDEA](https://www.jetbrains.com/help/idea/gradle.html)
-3. Используйте этот репозиторий в процессе работы над своей задачей. Весь код и необходимые артефакты
-должны быть в репозитории на момент сдачи. **Обязательное условие**: ваше решение должно содержать тесты,
-которые должны **успешно проходить**. Дополнительная информация по конфигурации сборки:
-   * Если вы используете Maven, то вам необходимо явно указать необходимую версию JDK (не ниже 1.8). Пример конфигурации
-   для Java и JDK 11:
-   ```xml
-   <properties>
-        <jvm.version>11</jvm.version>
-        <maven.compiler.source>${jvm.version}</maven.compiler.source>
-        <maven.compiler.target>${jvm.version}</maven.compiler.target>
-    </properties>
-   ```
-   Если все сконфигурировано правильно, то при запуске команды `mvn package` в консоль будет выводиться информация
-   о сборке и запущенных тестах. Пример необходимого вывода:
-   ```shell
-   ...
-   [INFO] -------------------------------------------------------
-   [INFO]  T E S T S
-   [INFO] -------------------------------------------------------
-   [INFO] 
-   [INFO] Results:
-   [INFO] 
-   [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
-   [INFO] 
-   [INFO] ------------------------------------------------------------------------
-   [INFO] BUILD SUCCESS
-   [INFO] ------------------------------------------------------------------------
-   [INFO] Total time:  20.524 s
-   [INFO] Finished at: 2022-02-01T22:28:30+03:00
-   [INFO] ------------------------------------------------------------------------
-   ```
-   * Если вы используете Gradle, то ничего дополнительного делать не нужно. Перед сдачей своего решения убедитесь, что
-   при запуске команды `./gradlew build` (или `./gradlew test`) в папке `build/test-results/test` генерируется xml файл
-   с отчетом о выполненных тестах. Пример успешного выполнения команды `./gradlew build`:
-   ```shell
-   BUILD SUCCESSFUL in 7s
-   7 actionable tasks: 7 executed
-   ```
-   В той же директории, в которой у вас находится файл `build.gradle` (или `build.gradle.kts`), должна появиться директория `build`.
-   В результате выполнения команды `./gradlew build` должен сгенерироваться файл с именем `build/test-results/test/TEST-myapp.test.Test.xml`,
-   где `myapp.test.Test` &mdash; имя вашего тестового класса. Если тестовых классов несколько, то для каждого из них генерируется отдельный отчет.
-4. Чтобы сдать задание откройте [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
-    * В качестве `base repository` выберите этот (базовый) репозиторий. В качестве ветки `base` выберите ветку `main`
-    * В качестве `head repository` выберите ваш репозиторий (fork). В качестве ветки `compare` выберите ветку 'main'
-    * В заголовке PR укажите ваше имя, название задания, и номер группы
-    * например, "Иванов И.И., 'Шашки рэндзю', гр. 3530901/00006"
+Almost everyone knows the game Sea Battle; it's quite popular. In my case, this game is designed for two players, if you're playing on the same computer. First, one player lines up their ships, then the other, and then you take turns attacking. This game uses JavaFX.
+The game starts with the "Start Game" button. 
+
+<img width="468" height="284" alt="image" src="https://github.com/user-attachments/assets/e0dad7d2-8144-4f66-8574-e3cbb58230c5" />
+
+Afterwards, players are asked to arrange their ships in the desired order. To rotate the king 90 degrees, right-click on it. This game does not allow ships to be placed adjacent to each other. 
+
+ <img width="468" height="286" alt="image" src="https://github.com/user-attachments/assets/c6835a2a-1b66-4e52-994e-8a0683fd6ed6" />
+
+<img width="468" height="292" alt="image" src="https://github.com/user-attachments/assets/7ed2fb86-b57e-4e48-b0b1-bca01f5f6ed6" />
+
+ <img width="468" height="284" alt="image" src="https://github.com/user-attachments/assets/014bf3bc-9928-4ba8-9ec5-c3d691a1ebcf" />
+
+After placing your ships, you and your friend can begin attacking. If you hit an enemy ship, you must continue attacking until you miss. If you miss, the cell will be marked blue. If a ship was hit but not destroyed, the cell will be marked with a cross. If a ship was destroyed, it will be highlighted in red and all the cells around it will be highlighted in blue. 
+
+<img width="468" height="285" alt="image" src="https://github.com/user-attachments/assets/4b3704f3-bc2e-4c01-89ed-d0bcc5027bbb" />
+
+<img width="468" height="285" alt="image" src="https://github.com/user-attachments/assets/28d94985-5fd5-4fd3-b2f3-2a97dd78a71e" />
+
+If all of one player's ships are killed, a message will be displayed on the screen indicating the victory of one or the other player.
+ 
+<img width="468" height="286" alt="image" src="https://github.com/user-attachments/assets/a17920dc-50e3-49c7-9b43-448f6fe4bf8c" />
+
+
